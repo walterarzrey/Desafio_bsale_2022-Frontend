@@ -9,7 +9,9 @@ class Category {
         // Listar categorías
         fetch(`${API_URL}/categories`, {
             method: 'GET',
-            'Content-Type': 'application/json'
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
             .then(response => {
                 if (response.status !== 200) {
