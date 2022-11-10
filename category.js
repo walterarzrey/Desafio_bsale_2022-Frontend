@@ -1,12 +1,15 @@
+// URL de nuestra API
 const API_URL = 'http://localhost:5000';
 
+// Clase Categoría
 class Category {
 
+    // Lista todas las categorías
     loadCategory() {
-        // Elemento principal (main)
+        // Elemento principal (ul)
         const HTMLResponse = document.querySelector('#category');
 
-        // Listar categorías
+        //Método que consume la API
         fetch(`${API_URL}/categories`, {
             method: 'GET',
             headers: {
@@ -42,7 +45,8 @@ class Category {
     }
 }
 
+// Se ejectua cuando carga la página
 window.addEventListener("load", () => {
     const category = new Category();
-    category.loadCategory();
+    category.loadCategory();        // Lista todas las categorías
 });

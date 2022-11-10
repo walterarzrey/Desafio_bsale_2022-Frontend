@@ -25,6 +25,8 @@ class Product {
             style: 'currency',
             currency: 'USD',
         });
+
+        // Método que consume la API
         fetch(`${API_URL}/products`, {
             method: 'GET',
             headers: {
@@ -251,11 +253,12 @@ class Product {
     }
 }
 
-// 
+// Se ejectua cuando carga la página
 window.addEventListener("load", () => {
     let product = new Product();
-    product.loadProducts();
+    product.loadProducts();     // Lista todos los productos
 
+    // Lista productos por categoría
     let menu_category = document.querySelector('#category');
     menu_category.addEventListener('click', (e) => {
         let category = e.target.parentElement.value;
@@ -266,6 +269,7 @@ window.addEventListener("load", () => {
         }
     });
 
+    // Lista los productos buscados por nombre
     let buscar = document.querySelector('#buscar');
     let input = document.querySelector('#InputBuscar');
     buscar.addEventListener('click', (e)=>{
