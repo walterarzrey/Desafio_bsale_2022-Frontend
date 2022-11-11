@@ -17,6 +17,10 @@ main {
     text-align: center;
 }
 
+.def-width {
+    max-width: 1440px;
+}
+
 .main-header {
     display: flex;
     align-items: center;
