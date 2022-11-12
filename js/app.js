@@ -2,7 +2,7 @@ import Category from './classes/category.js';
 import Product from './classes/product.js';
 
 // URL de nuestra API
-const API_URL = 'http://localhost:5000';
+const API_URL = 'https://jolly-crumble-d611ab.netlify.app';
 
 // Se ejectua cuando carga la página
 window.addEventListener("load", () => {

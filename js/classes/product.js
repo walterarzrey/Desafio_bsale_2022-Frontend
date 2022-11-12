@@ -1,17 +1,19 @@
 // Clase Producto
 export default class Product {
     /**
-     * @param {string} product_name - Nombre del producto a buscar
-     * @param {string} page - Número de página a listar
+     * Limpia la página
      */
-
-    // Limpia la página
     static clearPage() {
         const HTMLResponse = document.querySelector('#product');
         HTMLResponse.innerHTML = '';
     }
 
-    // Lista todos los productos
+    /**
+     * Lista todos los productos
+     * @param {string} API_URL - URL del backend
+     * @param {integer} page - Número de página a listar
+     * @param {string} ordername - 
+     */
     static loadProducts(API_URL, page, ordername, direction) {
         // Limpia la página
         this.clearPage();
