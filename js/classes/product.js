@@ -1,27 +1,20 @@
-// URL de nuestra API
-const API_URL = 'http://localhost:5000';
-
 // Clase Producto
-class Product {
+export default class Product {
     /**
      * @param {string} product_name - Nombre del producto a buscar
      * @param {string} page - Número de página a listar
      */
 
     // Limpia la página
-    clearPage() {
+    static clearPage() {
         const HTMLResponse = document.querySelector('#product');
         HTMLResponse.innerHTML = '';
     }
 
     // Lista todos los productos
-    loadProducts(page) {
+    static loadProducts(API_URL, page, ordername, direction) {
+        // Limpia la página
         this.clearPage();
-
-        // Variables de comprobación de métodos (paginación)
-        if (!page) {
-            page = 1;
-        }
 
         // Variables de comprobación de métodos (paginación)
         const product_name = '';
@@ -37,7 +30,7 @@ class Product {
         });
 
         // Método que consume la API
-        fetch(`${API_URL}/products?page=${page}`, {
+        fetch(`${API_URL}/products?page=${page}&ordername=${ordername}&direction=${direction}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -50,7 +43,8 @@ class Product {
                 return response.json()
             })
             .then(products => {
-                this.pagination(products.totalProducts, products.ITEMS_PER_PAGE, page, product_name, category);
+                this.pagination(API_URL, products.totalProducts, products.ITEMS_PER_PAGE, page, product_name, category, ordername, direction);
+                this.sort(API_URL, product_name, category);
                 products.products.forEach((product) => {
                     // Nombre del producto
                     let name = document.createElement('h1');
@@ -87,8 +81,6 @@ class Product {
                     article.classList = 'mycard product-item';
 
                     // Paginación
-
-
                     image_container.appendChild(img);
                     article.appendChild(image_container);
                     header.appendChild(name);
@@ -106,13 +98,8 @@ class Product {
     }
 
     // Lista los productos buscados por nombre
-    loadProductsByName(product_name, page) {
+    static loadProductsByName(API_URL, product_name, page, ordername, direction) {
         this.clearPage();
-
-        // Comporbación de página inicial
-        if (!page) {
-            page = 1;
-        }
 
         // Variable de comprobación de métodos (paginación)
         const category = '';
@@ -125,7 +112,7 @@ class Product {
             style: 'currency',
             currency: 'USD',
         });
-        fetch(`${API_URL}/products?product_name=${product_name}&page=${page}`, {
+        fetch(`${API_URL}/products?product_name=${product_name}&page=${page}&ordername=${ordername}&direction=${direction}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -138,7 +125,8 @@ class Product {
                 return response.json()
             })
             .then(products => {
-                this.pagination(products.totalProducts, products.ITEMS_PER_PAGE, page, product_name, category);
+                this.pagination(API_URL, products.totalProducts, products.ITEMS_PER_PAGE, page, product_name, category, ordername, direction);
+                this.sort(API_URL, product_name, category);
                 products.products.forEach((product) => {
                     // Nombre del producto
                     let name = document.createElement('h1');
@@ -191,13 +179,8 @@ class Product {
     }
 
     // Lista los productos por categoría
-    loadProductsByCategory(category, page) {
+    static loadProductsByCategory(API_URL, category, page, ordername, direction) {
         this.clearPage();
-
-        // Comporbación de página inicial
-        if (!page) {
-            page = 1;
-        }
 
         // Variables de comprobación de métodos (paginación)
         const product_name = '';
@@ -210,7 +193,7 @@ class Product {
             style: 'currency',
             currency: 'USD',
         });
-        fetch(`${API_URL}/products/` + category+`?page=${page}`, {
+        fetch(`${API_URL}/products/` + category + `?page=${page}&ordername=${ordername}&direction=${direction}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -223,7 +206,8 @@ class Product {
                 return response.json()
             })
             .then(products => {
-                this.pagination(products.totalProducts, products.ITEMS_PER_PAGE, page, product_name, category);
+                this.pagination(API_URL, products.totalProducts, products.ITEMS_PER_PAGE, page, product_name, category, ordername, direction);
+                this.sort(API_URL, product_name, category);
                 products.products.forEach((product) => {
                     // Nombre del producto
                     let name = document.createElement('h1');
@@ -275,13 +259,13 @@ class Product {
             })
     }
 
-    pagination(totalProducts, ITEMS_PER_PAGE, page, product_name, category) {
+    static pagination(API_URL, totalProducts, ITEMS_PER_PAGE, page, product_name, category, ordername, direction) {
         // Elemento principal - paginación
         const paginate = document.querySelector('#pagination');
 
         // Limpiar paginación
         paginate.innerHTML = '';
-        
+
         // variables para las páginas
         const currentPage = page;
         const hasNextPage = ITEMS_PER_PAGE * page < totalProducts;
@@ -290,7 +274,10 @@ class Product {
         const previousPage = page - 1;
         const lastPage = Math.ceil(totalProducts / ITEMS_PER_PAGE);
 
-        // Vista de paginación
+        /**
+        * Vista de paginación (Página inicial, Página Previa, Página Actual, Página Siguiente y Página final)
+        * Verificación de condiciones para ejecutar el método correcto
+        */
         if (currentPage === 1) {
             let a = document.createElement('a');
             a.innerHTML = '1';
@@ -304,15 +291,15 @@ class Product {
 
             if (product_name !== '') {
                 a.onclick = () => {
-                    this.loadProductsByName(product_name, 1);
+                    this.loadProductsByName(API_URL, product_name, 1, ordername, direction);
                 };
             } else if (category !== '') {
                 a.onclick = () => {
-                    this.loadProductsByCategory(category, 1);
+                    this.loadProductsByCategory(API_URL, category, 1, ordername, direction);
                 };
             } else {
                 a.onclick = () => {
-                    this.loadProducts(1);
+                    this.loadProducts(API_URL, 1, ordername, direction);
                 };
             }
         }
@@ -329,15 +316,15 @@ class Product {
 
             if (product_name !== '') {
                 b.onclick = () => {
-                    this.loadProductsByName(product_name, previousPage);
+                    this.loadProductsByName(API_URL, product_name, previousPage, ordername, direction);
                 };
             } else if (category !== '') {
                 b.onclick = () => {
-                    this.loadProductsByCategory(category, previousPage);
+                    this.loadProductsByCategory(API_URL, category, previousPage, ordername, direction);
                 };
             } else {
                 b.onclick = () => {
-                    this.loadProducts(previousPage);
+                    this.loadProducts(API_URL, previousPage, ordername, direction);
                 };
             }
         }
@@ -348,15 +335,15 @@ class Product {
 
             if (product_name !== '') {
                 d.onclick = () => {
-                    this.loadProductsByName(product_name, nextPage);
+                    this.loadProductsByName(API_URL, product_name, nextPage, ordername, direction);
                 };
             } else if (category !== '') {
                 d.onclick = () => {
-                    this.loadProductsByCategory(category, nextPage);
+                    this.loadProductsByCategory(API_URL, category, nextPage, ordername, direction);
                 };
             } else {
                 d.onclick = () => {
-                    this.loadProducts(nextPage);
+                    this.loadProducts(API_URL, nextPage, ordername, direction);
                 };
             }
         }
@@ -367,43 +354,65 @@ class Product {
 
             if (product_name !== '') {
                 e.onclick = () => {
-                    this.loadProductsByName(product_name, lastPage);
+                    this.loadProductsByName(API_URL, product_name, lastPage, ordername, direction);
                 };
             } else if (category !== '') {
                 e.onclick = () => {
-                    this.loadProductsByCategory(category, lastPage);
+                    this.loadProductsByCategory(API_URL, category, lastPage, ordername, direction);
                 };
             } else {
                 e.onclick = () => {
-                    this.loadProducts(lastPage);
+                    this.loadProducts(API_URL, lastPage, ordername, direction);
                 };
             }
         }
     }
-}
 
-// Se ejectua cuando carga la página
-window.addEventListener("load", () => {
-    let product = new Product();
-    product.loadProducts();     // Lista todos los productos
+    static sort(API_URL, product_name, category) {
+        // Elemento contenedor para ordenar los productos
+        const inputRadio1 = document.querySelector('#Ascendente');
+        const inputRadio2 = document.querySelector('#Descendente');
 
-    // Lista productos por categoría
-    let menu_category = document.querySelector('#category');
-    menu_category.addEventListener('click', (e) => {
-        let category = e.target.parentElement.value;
-        if (category === 0) {
-            product.loadProducts();
+        // Reiniciar el check
+        inputRadio1.checked = false;
+        inputRadio2.checked = false;
+
+        // Verificación de casos para ordenar en los métodos respectivos
+        if (product_name !== '') {
+            inputRadio1.onclick = () => {
+                const ordername = 'name';
+                const direction = 'ASC';
+                this.loadProductsByName(API_URL, product_name, 1, ordername, direction);
+            }
+            inputRadio2.onclick = () => {
+                const ordername = 'name';
+                const direction = 'DESC';
+                this.loadProductsByName(API_URL, product_name, 1, ordername, direction);
+            };
+
+        } else if (category !== '') {
+            inputRadio1.onclick = () => {
+                const ordername = 'name';
+                const direction = 'ASC';
+                this.loadProductsByCategory(API_URL, category, 1, ordername, direction);
+            };
+            inputRadio2.onclick = () => {
+                const ordername = 'name';
+                const direction = 'DESC';
+                this.loadProductsByCategory(API_URL, category, 1, ordername, direction);
+            };
+
         } else {
-            product.loadProductsByCategory(category);
+            inputRadio1.onclick = () => {
+                const ordername = 'name';
+                const direction = 'ASC';
+                this.loadProducts(API_URL, 1, ordername, direction);
+            };
+            inputRadio2.onclick = () => {
+                const ordername = 'name';
+                const direction = 'DESC';
+                this.loadProducts(API_URL, 1, ordername, direction);
+            };
         }
-    });
-
-    // Lista los productos buscados por nombre
-    let buscar = document.querySelector('#buscar');
-    let input = document.querySelector('#InputBuscar');
-    buscar.addEventListener('click', (e) => {
-        e.preventDefault();
-        const product_name = input.value;
-        product.loadProductsByName(product_name);
-    });
-});
+    }
+}
