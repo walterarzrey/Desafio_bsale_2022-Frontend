@@ -4,16 +4,20 @@ Bienvenido a la documentación del frontend de la tienda virtual, el cual permit
 La conexión con la API no requiere token o algún tipo de autenticación, debido a que es un desarrollo de prueba técnica.
 
 # Contenidos 📋
-* [Introducción](#introducción)
-* [Explicación del Desafio](#explicación-del-desafio)
+* [Introducción](#introducción-)
+* [Explicación del Desafio](#explicación-del-desafio-)
+    1. [Estructura](#1-estructura)
+    2. [Maquetación y estilos](#2-maquetación-y-estilos-)
+    3. [Creación de las clases](#3-creación-de-las-clases)
+    4. [Uso de las clases en App.js](#4-uso-de-las-clases-en-appjs)
 
-# Introducción 🚀
+## Introducción 🚀
 - La aplicación esta desarrollada en JavaScript Vanilla.
 - Se empleó métodos estáticos asíncronos.
 - La explicación detallada se encuentra en los comentarios del código fuente.
 
-# Explicación del Desafio 🔈
-## 1. Estructura
+## Explicación del Desafio 🔈
+### 1. Estructura
 - css
     - main.css
 - js
@@ -23,7 +27,7 @@ La conexión con la API no requiere token o algún tipo de autenticación, debid
     - app.js
 - index.html
     
-## 2. Maquetación y estilos 🎨
+### 2. Maquetación y estilos 🎨
 - Se creo tres estructuras en el body de HTML: *header*, *main* y *footer*.
     - header: Se encuentra la barra de navegación con el desplegable de categorías y el formulario de búsqueda por nombre.
     - main: Se encuentra el ordenamiento y contenido (lista los productos).
@@ -31,7 +35,7 @@ La conexión con la API no requiere token o algún tipo de autenticación, debid
 - Se asignaron `id` a los elementos principales como el main para poder generar los elementos hijos desde JavaScript.
 - Se usó estilos propios y bootstrap para agilizar el diseño.
 
-## 3. Creación de las clases
+### 3. Creación de las clases
 - En primer lugar, se creo la clase Product que contiene los siguientes métodos, la explicación de los argumentos de cada método se encuentra detallado en los comentarios del código fuente:
     1. clearPage - Método estático que elimina el contenido del main.
     2. currencyFormat - Función estática que da el formato moneda al precio brindado. 
@@ -46,7 +50,7 @@ La conexión con la API no requiere token o algún tipo de autenticación, debid
 - En segundo lugar, se creo la clase Category que contiene el siguiente método, la explicación de los argumentos de cada método se encuentra detallado en los comentarios del código fuente:
     1. loadCategory - Método statico para obtener todas las categorías.
 
-## 4. Uso de las clases en App.js
+### 4. Uso de las clases en App.js
 - Se almacena la URL de la API para enviarla a los métodos de las clases.
 - Se ejecutan las peticiones de productos y categorías al momento de cargar el archivo, cuando se activa el evento click y cuando se busca un determinado producto, todo mediante los filtros de nombre y categoría.
 - Se usa el localStorage para evaluar si las peticiones deben o no volverse a ejecutar al momento de recargar la página.
