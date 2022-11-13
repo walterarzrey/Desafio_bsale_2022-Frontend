@@ -17,38 +17,40 @@
 <!-- Body -->
 <body>
     <!-- Inicio de la barra de navegación (Menú) -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid def-width">
-            <a class="navbar-brand active">BSALE-COMMERCE</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
-                aria-controls="menu" aria-expanded="false" aria-label="menu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-around" id="menu">
-                <!-- Inicio de la lista desplegable (dropdown) de Categorías -->
-                <ul class="navbar-nav m-0 mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Categorías
-                        </a>
-                        <ul id="category" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li class="menu_option" value="0"><a class="dropdown-item" style="cursor: pointer">Todas las
-                                    categorías</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <!-- Fin de la lista desplegable (dropdown) de Categorías -->
-                <!-- Inicio del form para búsqueda de nombre -->
-                <form class="d-flex col-10">
-                    <input id="InputBuscar" class="form-control me-2" type="search" placeholder="Buscar por nombre"
-                        aria-label="Search">
-                    <button id="buscar" class="btn btn-outline" type="submit">Buscar</button>
-                </form>
-                <!-- Fin del form para búsqueda de nombre -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid def-width">
+                <a class="navbar-brand active">BSALE-COMMERCE</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                    aria-controls="menu" aria-expanded="false" aria-label="menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-around" id="menu">
+                    <!-- Inicio de la lista desplegable (dropdown) de Categorías -->
+                    <ul class="navbar-nav m-0 mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Categorías
+                            </a>
+                            <ul id="category" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li class="menu_option" value="0"><a class="dropdown-item" style="cursor: pointer">Todas las
+                                        categorías</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- Fin de la lista desplegable (dropdown) de Categorías -->
+                    <!-- Inicio del form para búsqueda de nombre -->
+                    <form class="d-flex col-10">
+                        <input id="InputBuscar" class="form-control me-2" type="search" placeholder="Buscar por nombre"
+                            aria-label="Search">
+                        <button id="buscar" class="btn btn-outline" type="submit">Buscar</button>
+                    </form>
+                    <!-- Fin del form para búsqueda de nombre -->
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Inicio del contenido de la página -->
     <main class="def-width">
@@ -75,10 +77,12 @@
 
         <!-- Mensajes de alerta -->
         <h2 id="alert" class="error-description hide"></h2>
-
-        <!-- Paginación -->
-        <section id="pagination" class="pagination"></section>
     </main>
+    
+    <!-- Paginación -->
+    <footer>
+        <section id="pagination" class="pagination"></section>
+    </footer>
     <!-- Fin del contenido de la página -->
 
     <!-- Link al script de bootstrap -->

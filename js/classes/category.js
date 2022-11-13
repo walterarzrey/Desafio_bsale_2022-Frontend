@@ -1,6 +1,5 @@
 // Clase Categoría
 export default class Category {
-
     /**
      * Lista todas las categorías
      * @param {string} API_URL - URL del backend

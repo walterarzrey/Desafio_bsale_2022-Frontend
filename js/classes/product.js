@@ -19,6 +19,9 @@ export default class Product {
         return formatter.format(price);
     }
 
+    /**
+     * Muestra mensajes de alerta al usuario
+     */
     static alert(message) {
         const alert = document.querySelector('#alert');
         alert.innerHTML = message;
