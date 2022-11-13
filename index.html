@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Head -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link a nuestro CSS -->
     <link rel="stylesheet" href="/css/styles.css">
+    <!-- Link a bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Link a font awesome -->
     <script src="https://kit.fontawesome.com/bd0bb73cdd.js" crossorigin="anonymous"></script>
     <title>BSALE-COMMERCE</title>
 </head>
-
+<!-- Body -->
 <body>
+    <!-- Inicio de la barra de navegación (Menú) -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid def-width">
-            <a class="navbar-brand active" href="/">BSALE-COMMERCE</a>
+            <a class="navbar-brand active">BSALE-COMMERCE</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
                 aria-controls="menu" aria-expanded="false" aria-label="menu">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-around" id="menu">
+                <!-- Inicio de la lista desplegable (dropdown) de Categorías -->
                 <ul class="navbar-nav m-0 mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -33,16 +38,21 @@
                         </ul>
                     </li>
                 </ul>
+                <!-- Fin de la lista desplegable (dropdown) de Categorías -->
+                <!-- Inicio del form para búsqueda de nombre -->
                 <form class="d-flex col-10">
                     <input id="InputBuscar" class="form-control me-2" type="search" placeholder="Buscar por nombre"
                         aria-label="Search">
                     <button id="buscar" class="btn btn-outline" type="submit">Buscar</button>
                 </form>
+                <!-- Fin del form para búsqueda de nombre -->
             </div>
         </div>
     </nav>
 
+    <!-- Inicio del contenido de la página -->
     <main class="def-width">
+        <!-- Inicio del ordenamiento -->
         <div id="sort" class="sort">
             <span>Ordenar por nombre: </span>
             <div class="form-check">
@@ -58,17 +68,26 @@
                 </label>
             </div>
         </div>
+        <!-- Fin del ordenamiento -->
+
+        <!-- Listado de productos -->
         <div id="product" class="grid"></div>
+
+        <!-- Mensajes de alerta -->
+        <h2 id="alert" class="error-description hide"></h2>
+
+        <!-- Paginación -->
         <section id="pagination" class="pagination"></section>
     </main>
+    <!-- Fin del contenido de la página -->
 
+    <!-- Link al script de bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+    <!-- Links a nuestras clases y script principal -->
     <script src="./js/classes/product.js" type="module"></script>
     <script src="./js/classes/category.js" type="module"></script>
     <script src="./js/app.js" type="module"></script>
-
 </body>
-
 </html>
