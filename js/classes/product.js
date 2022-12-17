@@ -71,6 +71,7 @@ export default class Product {
                 }
                 productsObject = await response.json();     // Almacena el objeto
                 productsData = productsObject.products;     // Almacena los datos de productos
+                console.log(productsData);
                 localStorage.setItem('products', JSON.stringify(productsObject));   // Almacena datos de productos en el localStorage
             }
 
@@ -122,6 +123,7 @@ export default class Product {
             // Icono de carrito de compras
             let cart = document.createElement('i');
             cart.classList = 'fa-solid fa-cart-shopping';
+            cart.setAttribute('data-id', product.id);
 
             // Article que contiene los datos de cada producto
             let article = document.createElement('article');
@@ -244,6 +246,7 @@ export default class Product {
             // Icono de carrito de compras
             let cart = document.createElement('i');
             cart.classList = 'fa-solid fa-cart-shopping';
+            cart.setAttribute('data-id', product.id);
 
             // Article que contiene los datos de cada producto
             let article = document.createElement('article');
@@ -356,6 +359,7 @@ export default class Product {
             // Icono de carrito de compras
             let cart = document.createElement('i');
             cart.classList = 'fa-solid fa-cart-shopping';
+            cart.setAttribute('data-id', product.id);
 
             // Article que contiene los datos de cada producto
             let article = document.createElement('article');
@@ -420,19 +424,19 @@ export default class Product {
             if (product_name !== '') {
                 a.onclick = () => {
                     // Limpia el localStorage para hacer fetch de otra página
-                    localStorage.clear();
+                    localStorage.removeItem('products');
                     this.loadProductsByName(API_URL, product_name, 1, ordername, direction);
                 };
             } else if (category !== '') {
                 a.onclick = () => {
                     // Limpia el localStorage para hacer fetch de otra página
-                    localStorage.clear();
+                    localStorage.removeItem('products');
                     this.loadProductsByCategory(API_URL, category, 1, ordername, direction);
                 };
             } else {
                 a.onclick = () => {
                     // Limpia el localStorage para hacer fetch de otra página
-                    localStorage.clear();
+                    localStorage.removeItem('products');
                     this.loadProducts(API_URL, 1, ordername, direction);
                 };
             }
@@ -451,19 +455,19 @@ export default class Product {
             if (product_name !== '') {
                 b.onclick = () => {
                     // Limpia el localStorage para hacer fetch de otra página
-                    localStorage.clear();
+                    localStorage.removeItem('products');
                     this.loadProductsByName(API_URL, product_name, previousPage, ordername, direction);
                 };
             } else if (category !== '') {
                 b.onclick = () => {
                     // Limpia el localStorage para hacer fetch de otra página
-                    localStorage.clear();
+                    localStorage.removeItem('products');
                     this.loadProductsByCategory(API_URL, category, previousPage, ordername, direction);
                 };
             } else {
                 b.onclick = () => {
                     // Limpia el localStorage para hacer fetch de otra página
-                    localStorage.clear();
+                    localStorage.removeItem('products');
                     this.loadProducts(API_URL, previousPage, ordername, direction);
                 };
             }
@@ -476,19 +480,19 @@ export default class Product {
             if (product_name !== '') {
                 d.onclick = () => {
                     // Limpia el localStorage para hacer fetch de otra página
-                    localStorage.clear();
+                    localStorage.removeItem('products');
                     this.loadProductsByName(API_URL, product_name, nextPage, ordername, direction);
                 };
             } else if (category !== '') {
                 d.onclick = () => {
                     // Limpia el localStorage para hacer fetch de otra página
-                    localStorage.clear();
+                    localStorage.removeItem('products');
                     this.loadProductsByCategory(API_URL, category, nextPage, ordername, direction);
                 };
             } else {
                 d.onclick = () => {
                     // Limpia el localStorage para hacer fetch de otra página
-                    localStorage.clear();
+                    localStorage.removeItem('products');
                     this.loadProducts(API_URL, nextPage, ordername, direction);
                 };
             }
@@ -501,19 +505,19 @@ export default class Product {
             if (product_name !== '') {
                 e.onclick = () => {
                     // Limpia el localStorage para hacer fetch de otra página
-                    localStorage.clear();
+                    localStorage.removeItem('products');
                     this.loadProductsByName(API_URL, product_name, lastPage, ordername, direction);
                 };
             } else if (category !== '') {
                 e.onclick = () => {
                     // Limpia el localStorage para hacer fetch de otra página
-                    localStorage.clear();
+                    localStorage.removeItem('products');
                     this.loadProductsByCategory(API_URL, category, lastPage, ordername, direction);
                 };
             } else {
                 e.onclick = () => {
                     // Limpia el localStorage para hacer fetch de otra página
-                    localStorage.clear();
+                    localStorage.removeItem('products');
                     this.loadProducts(API_URL, lastPage, ordername, direction);
                 };
             }
@@ -539,14 +543,14 @@ export default class Product {
         if (product_name !== '') {
             inputRadio1.onclick = () => {
                 // Limpia el localStorage para hacer fetch de otra página
-                localStorage.clear();
+                localStorage.removeItem('products');
                 const ordername = 'name';
                 const direction = 'ASC';
                 this.loadProductsByName(API_URL, product_name, 1, ordername, direction);
             }
             inputRadio2.onclick = () => {
                 // Limpia el localStorage para hacer fetch de otra página
-                localStorage.clear();
+                localStorage.removeItem('products');
                 const ordername = 'name';
                 const direction = 'DESC';
                 this.loadProductsByName(API_URL, product_name, 1, ordername, direction);
@@ -555,14 +559,14 @@ export default class Product {
         } else if (category !== '') {
             inputRadio1.onclick = () => {
                 // Limpia el localStorage para hacer fetch de otra página
-                localStorage.clear();
+                localStorage.removeItem('products');
                 const ordername = 'name';
                 const direction = 'ASC';
                 this.loadProductsByCategory(API_URL, category, 1, ordername, direction);
             };
             inputRadio2.onclick = () => {
                 // Limpia el localStorage para hacer fetch de otra página
-                localStorage.clear();
+                localStorage.removeItem('products');
                 const ordername = 'name';
                 const direction = 'DESC';
                 this.loadProductsByCategory(API_URL, category, 1, ordername, direction);
@@ -571,14 +575,14 @@ export default class Product {
         } else {
             inputRadio1.onclick = () => {
                 // Limpia el localStorage para hacer fetch de otra página
-                localStorage.clear();
+                localStorage.removeItem('products');
                 const ordername = 'name';
                 const direction = 'ASC';
                 this.loadProducts(API_URL, 1, ordername, direction);
             };
             inputRadio2.onclick = () => {
                 // Limpia el localStorage para hacer fetch de otra página
-                localStorage.clear();
+                localStorage.removeItem('products');
                 const ordername = 'name';
                 const direction = 'DESC';
                 this.loadProducts(API_URL, 1, ordername, direction);

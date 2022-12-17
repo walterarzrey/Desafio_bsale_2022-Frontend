@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- Head -->
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +16,7 @@
     <title>BSALE-COMMERCE</title>
 </head>
 <!-- Body -->
+
 <body>
     <!-- Inicio de la barra de navegación (Menú) -->
     <header>
@@ -34,8 +36,7 @@
                                 Categorías
                             </a>
                             <ul id="category" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li class="menu_option" value="0"><a class="dropdown-item" style="cursor: pointer">Todas las
-                                        categorías</a></li>
+                                <li class="menu_option" value="0"><a class="dropdown-item" style="cursor: pointer">Todas las categorías</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -47,6 +48,39 @@
                         <button id="buscar" class="btn btn-outline" type="submit">Buscar</button>
                     </form>
                     <!-- Fin del form para búsqueda de nombre -->
+                    <a class="nav-link " href="#" id="menu-carro" role="button" data-bs-toggle="cart.dropdown"
+                        aria-expanded="false">
+                        <i class="fas fa-shopping-basket carrito"></i><span class="title-carro">Carrito</span>
+                    </a>
+                    <div data-bs="cart.dropdown" class="dropdownContent" id="carrito">
+                        <div data-bs="containerItemsCart" class="containerItemsCart">
+
+                            <div class="containerCartEmpty" id="containerCartEmpty">
+                                <i class="fas fa-shopping-basket" aria-hidden="true"></i>
+                                <p>Tú carro está vacío.</p>
+                                <table id="lista-carrito" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Cantidad</th>
+                                            <th>Imagen</th>
+                                            <th>Nombre</th>
+                                            <th>Precio</th>
+                                            <th>Quitar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+
+                                <div class="botones-carrito">
+                                    <button id="cerrar-carro" data-bs="btnCloseDropdown"
+                                        class="btn btn-primary mx-1">Cerrar</button>
+                                    <button id="vaciar-carro" data-bs="btnCloseDropdown"
+                                        class="vaciar-carro btn btn-outline mx-1">Vaciar Carrito</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -78,7 +112,7 @@
         <!-- Mensajes de alerta -->
         <h2 id="alert" class="error-description hide"></h2>
     </main>
-    
+
     <!-- Paginación -->
     <footer>
         <section id="pagination" class="pagination"></section>
@@ -92,6 +126,10 @@
     <!-- Links a nuestras clases y script principal -->
     <script src="./js/classes/product.js" type="module"></script>
     <script src="./js/classes/category.js" type="module"></script>
+    <script src="./js/classes/carrito.js" type="module"></script>
+    <script src="./js/classes/pedido.js" type="module"></script>
     <script src="./js/app.js" type="module"></script>
+    <script src="./js/functions.js" type="module"></script>
 </body>
+
 </html>
